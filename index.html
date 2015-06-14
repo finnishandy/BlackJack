@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles/cards.css" />
+    <title>Karma example setup with Require.js</title>
+    <script data-main="src/main.js" src="lib/require.js"></script>
+</head>
+
+<body>
+<h1>Dealer</h1>
+<div class="playingCards dealer">
+    <ul class="table">
+
+    </ul>
+</div>
+<h1 style="clear: both;">Player</h1>
+<div class="playingCards player" style="margin: auto;">
+    <ul class="table">
+
+    </ul>
+</div>
+<div style="clear: both;">
+    <input type="button" id="stand" value="stick" style="width: 100px;"/>
+    <input type="button" value="hit" style="width: 100px;"/>
+</div>
+</body>
+</html>
+<script id="card-template" type="text/x-handlebars-template">
+    {{#each cards}}
+    <li>
+        <span class="card {{#if hide}}back{{else}}rank-{{toLowerCase rank}} {{suit}}{{/if}} ">
+            <span class="rank">{{rank}}</span>
+            <span class="suit">&{{suit}};</span>
+        </span>
+    </li>
+    {{/each}}
+</script>
