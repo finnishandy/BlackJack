@@ -1,6 +1,10 @@
 Sakari Ruoho 14/06/2015
 
-install node dependencie with 'npm install' on the project root.
+install node dependencie with 
+```bash 
+npm install
+``` 
+on the project root.
 
 Playing Card CSS: http://selfthinker.github.com/CSS-Playing-Cards/
 
