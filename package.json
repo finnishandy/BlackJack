@@ -2,6 +2,8 @@
   "name": "karma-require",
   "version": "0.0.1",
   "devDependencies": {
+    "body-parser": "^1.13.0",
+    "express": "^4.12.4",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.30",
     "karma-chrome-launcher": "^0.1.12",
@@ -11,6 +13,7 @@
     "karma-phantomjs2-launcher": "^0.1.6",
     "karma-requirejs": "^0.2.2",
     "karma-slimerjs-launcher": "^0.1.2",
+    "mongoose": "^4.0.5",
     "promise-polyfill": "^2.0.2"
   }
 }
