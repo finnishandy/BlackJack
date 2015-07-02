@@ -8,11 +8,28 @@ function PathResolver(resolverType) {
 }
 
 PathResolver.prototype = {
-    resolve: function() {
-        return 'foo';
+    resolve: function(identifier) {
+        var _type = this.resolverType;
+        switch (_type) {
+            case 'mime':
+                return resolveFromMime(identifier);
+            default:
+                return 'foo';
+
+        }
     }
 }
 
 module.exports = function(resolverType) {
     return new PathResolver(resolverType);
+}
+
+function resolveFromMime(identifier) {
+    var _mime = mime.lookup(identifier);
+    switch (_mime) {
+        case 'text/css':
+            return 'styles/';
+        default:
+            return 'src';
+    }
 }
