@@ -29,7 +29,9 @@ function resolveFromMime(identifier) {
     switch (_mime) {
         case 'text/css':
             return 'styles/';
+        case 'application/javascript':
+            return 'src/';
         default:
-            return 'src';
+            throw new Error('undefined mime type');
     }
 }
