@@ -45,7 +45,7 @@ require(['pubsub','socketio','jquery'], function(PubSub, io, $) {
 
 
     PubSub.subscribe( 'STAND', function(msg, data) {
-        console.log('stand event');
+        //console.log('stand event');
         //socket.emit("STAND", socket.id);
         socket.emit("SUBSCRIBE", 'table1');
         //io.to("table1").emit("your message");

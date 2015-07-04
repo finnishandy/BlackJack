@@ -3,7 +3,7 @@
  * http://www.joezimjs.com/javascript/plugging-into-socket-io-advanced/
  */
 var http = require('http');
-var eventHandler = require('./event/ws-event');
+var eventHandler = require('./event/ws-event')();
 
 var server = http.createServer(function(request, response) {});
 
@@ -23,7 +23,7 @@ WSServer.prototype.start = function() {
 var io = require("socket.io")(server);
 
 var handleClient = function (client) {
-    eventHandler(nsp, client);
+    eventHandler.attach(nsp, client);
 
 };
 
