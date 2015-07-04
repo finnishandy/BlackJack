@@ -1,0 +1,1 @@
+define(["blackjack"],function(t){function n(t){this.nick=t,this.hand=[],this.testHand=void 0}return n.prototype=new t,n.prototype.willTakeMoreCards=function(){return this.getTotal(!0)<this.DEALER_THRESHOLD},n.prototype.constructor=n,n});

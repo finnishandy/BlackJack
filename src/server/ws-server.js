@@ -3,6 +3,7 @@
  * http://www.joezimjs.com/javascript/plugging-into-socket-io-advanced/
  */
 var http = require('http');
+var eventHandler = require('./event/ws-event');
 
 var server = http.createServer(function(request, response) {});
 
@@ -19,37 +20,11 @@ WSServer.prototype.start = function() {
     });
 };
 
-
-//module.exports = WSServer;
-
 var io = require("socket.io")(server);
 
-var handleClient = function (socket) {
-    //socket.join('table1');
+var handleClient = function (client) {
+    eventHandler(nsp, client);
 
-    //socket.set('room', 'table1', function() {
-    //    console.log('saved table1');
-    //});
-    //console.log('user joined table1');
-    //socket.broadcast.to('table1').emit('message', { some: 'data' });
-    //setInterval(function(){
-    //    //io.sockets.in('global').emit('roomChanged', { chicken: 'tasty' });
-    //    socket.to('table1').emit('message', { some: 'data' });
-    //}, 1000);
-
-    // we've got a client connection
-    socket.on("STAND", function(data){
-        console.log(JSON.stringify(data));
-
-    });
-
-    socket.on("SUBSCRIBE", function(table){
-        console.log(JSON.stringify(table));
-        socket.join('table1');
-        nsp.to('table1').emit('message', { some: 'data' });
-    });
-    //console.log("handle client");
-    //socket.emit("message", {user: "nodesource", text: "Hello, world!"});
 };
 
 var nsp = io
@@ -58,9 +33,5 @@ var nsp = io
     .emit('welcome', 'everyone!');
 
 
-
-
-
-//io.on("connection", handleClient);
 
 
