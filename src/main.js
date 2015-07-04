@@ -7,6 +7,7 @@ requirejs.config({
         'underscore': 'lib/underscore',
         'pubsub': 'lib/pubsub',
         'jasmine-jquery': 'lib/jasmine-jquery',
+        'socketio': 'lib/socket.io',
         'promise': 'lib/Promise',
         'handlebars': 'lib/handlebars-v3.0.3',
         'deal' : 'app/deal',
@@ -19,6 +20,9 @@ requirejs.config({
     },
 
     shim: {
+        'socketio': {
+            exports: 'io'
+        },
         'underscore': {
             exports: '_'
         },
@@ -29,10 +33,39 @@ requirejs.config({
 });
 
 
+require(['pubsub','socketio','jquery'], function(PubSub, io, $) {
+
+//require(['handlebars', 'jquery', 'card', 'deal', 'dealer', 'player'], function (Handlebars, $, Card, Deal, Dealer, Player) {
 
 
-require(['handlebars', 'jquery', 'card', 'deal', 'dealer', 'player'], function (Handlebars, $, Card, Deal, Dealer, Player) {
+    $("#stand").click(function(e){
+        e.preventDefault();
+        PubSub.publish( 'STAND', 'hello world!' );
+    });
 
+
+    PubSub.subscribe( 'STAND', function(msg, data) {
+        console.log('stand event');
+        //socket.emit("STAND", socket.id);
+        socket.emit("SUBSCRIBE", 'table1');
+        //io.to("table1").emit("your message");
+    } );
+
+    var socket = io.connect("http://127.0.0.1:8000/blackjack");
+    //var socket = io('/my-namespace');
+    socket.on("connect", function () {
+        console.log("Connected!");
+        //socket.join('table1');
+    });
+
+    socket.on("welcome", function (msg) {
+        console.log(msg);
+        //socket.join('table1');
+    });
+    socket.on("message", function (message) {
+        console.log("message" + JSON.stringify(message));
+    });
+    /*
     Handlebars.registerHelper('toLowerCase', function(str) {
         return str.toLowerCase();
     });
@@ -64,4 +97,5 @@ require(['handlebars', 'jquery', 'card', 'deal', 'dealer', 'player'], function (
         var dealerHtml    = template(dealerContext);
         $("div.dealer>ul.table").empty().append(dealerHtml);
     });
+    */
 });

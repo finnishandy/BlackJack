@@ -30,7 +30,7 @@ function serveStatic(response, cache, absPath) {
             if (exists) {
                 fs.readFile(absPath, function(err, data) {
                     if (err) {
-                        console.log("erooro");
+                        console.log("error reading file " + absPath);
                         send404(response);
                     } else {
                         cache[absPath] = data;
@@ -46,15 +46,13 @@ function serveStatic(response, cache, absPath) {
 
 var server = http.createServer(function(request, response) {
     var filePath = false;
-    var dir = __dirname;
+    var root = appRoot;
 
     if (request.url == '/') {
-        filePath = dir + '/../../html/index.html';
+        filePath = root + '/html/index.html';
     } else {
-        filePath = PathResolver.resolve(request.url) + '/../styles/public' + request.url;
+        filePath = root + PathResolver.resolve(request.url);
     }
-
-    //var absPath = './' + filePath; //TODO: not really absolute fix it for security
     console.log("another request: " + filePath);
     serveStatic(response, cache, filePath);
 });
@@ -70,10 +68,6 @@ HTTPServer.prototype.start = function() {
         console.log("HTTP Server listening on port", _port);
     });
 };
-
-function getMimePath(mime) {
-    return "foo";
-}
 
 
 
