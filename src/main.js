@@ -33,7 +33,7 @@ requirejs.config({
 });
 
 
-require(['pubsub','socketio','jquery'], function(PubSub, io, $) {
+require(['pubsub','socketio','jquery','handlebars'], function(PubSub, io, $, Handlebars) {
 
 //require(['handlebars', 'jquery', 'card', 'deal', 'dealer', 'player'], function (Handlebars, $, Card, Deal, Dealer, Player) {
 
@@ -58,9 +58,13 @@ require(['pubsub','socketio','jquery'], function(PubSub, io, $) {
         //socket.join('table1');
     });
 
-    socket.on("welcome", function (msg) {
-        console.log(msg);
-        //socket.join('table1');
+    socket.on("welcome", function (games) {
+        console.log(games);
+        var source   = $("#lobby-template").html();
+        var template = Handlebars.compile(source);
+        var tables    = template(games);
+        $('#lobby').append(tables);
+        //#socket.join('table1');
     });
     socket.on("message", function (message) {
         console.log("message" + JSON.stringify(message));

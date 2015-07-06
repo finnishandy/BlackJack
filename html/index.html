@@ -16,6 +16,7 @@
     </ul>
 </div>
 <h1 style="clear: both;">Player</h1>
+<div id="lobby"></div>
 <div class="playingCards player" style="margin: auto;">
     <ul class="table">
 
@@ -27,6 +28,13 @@
 </div>
 </body>
 </html>
+<script id="lobby-template" type="text/x-handlebars-template">
+    {{#each games}}
+    <li>
+        <div class="game"></div>
+    </li>
+    {{/each}}
+</script>
 <script id="card-template" type="text/x-handlebars-template">
     {{#each cards}}
     <li>

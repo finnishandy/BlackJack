@@ -10,6 +10,7 @@ define(['game', 'dealer', 'player'], function(Game, Dealer, Player) {
             game.setPlayers(players);
         });
 
+
         /*
         it('should have a dealer', function() {
             var dealer = deal.getDealer();
