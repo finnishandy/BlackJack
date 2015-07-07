@@ -1,7 +1,7 @@
 /**
  * Created by Finnishandy on 08/06/2015.
  */
-define(['deck','promise'], function(Deck) {
+define(['deck'], function(Deck) {
 
     function Deal() {
         this.players = [];
