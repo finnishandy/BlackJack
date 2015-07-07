@@ -16,6 +16,7 @@ requirejs.config({
         'game': 'app/game',
         'deck': 'app/deck',
         'card': 'app/card',
+        'host': 'app/host',
         'blackjack' : 'app/blackjack'
     },
 
