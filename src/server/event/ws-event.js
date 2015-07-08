@@ -7,7 +7,7 @@ function WSEventHandler() {}
 
 WSEventHandler.prototype = {
     attach: function(socket, client) {
-        client.on("JOIN", function(game){
+        client.on("STAND", function(game){
             console.log(JSON.stringify(game));
             client.join('table1');
             socket.to('table1').emit('message', { some: 'data' });

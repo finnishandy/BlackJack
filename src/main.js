@@ -39,36 +39,44 @@ require(['pubsub','socketio','jquery','handlebars'], function(PubSub, io, $, Han
 //require(['handlebars', 'jquery', 'card', 'deal', 'dealer', 'player'], function (Handlebars, $, Card, Deal, Dealer, Player) {
 
 
-    $("#stand").click(function(e){
-        e.preventDefault();
-        PubSub.publish( 'STAND', 'hello world!' );
-    });
 
 
-    PubSub.subscribe( 'STAND', function(msg, data) {
-        //console.log('stand event');
+
+    PubSub.subscribe('message', function(msg, data) {
+        console.log(msg + ":" + JSON.stringify(data));
         //socket.emit("STAND", socket.id);
-        socket.emit("JOIN", 'table1');
-        //io.to("table1").emit("your message");
+        //socket.emit("JOIN", 'table1');
+        //io.to("table1").emit(data);
     } );
 
     var socket = io.connect("http://127.0.0.1:8000/blackjack");
     //var socket = io('/my-namespace');
     socket.on("connect", function () {
         console.log("Connected!");
+        PubSub.publish("message", arguments);
         //socket.join('table1');
     });
 
     socket.on("welcome", function (games) {
+        /*
         console.log(games);
         var source   = $("#lobby-template").html();
         var template = Handlebars.compile(source);
         var tables    = template(games);
         $('#lobby').append(tables);
+        */
+        PubSub.publish("welcome", arguments);
         //#socket.join('table1');
     });
     socket.on("message", function (message) {
-        console.log("message" + JSON.stringify(message));
+        //console.log("message" + JSON.stringify(message));
+        PubSub.publish("message", arguments);
+    });
+
+    $("#stand").click(function(e){
+        e.preventDefault();
+        socket.emit("STAND", "foo");
+        //PubSub.publish( 'STAND', 'hello world!' );
     });
     /*
     Handlebars.registerHelper('toLowerCase', function(str) {

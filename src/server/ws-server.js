@@ -26,8 +26,8 @@ WSServer.prototype.start = function() {
 var io = require("socket.io")(server);
 
 var handleClient = function (client) {
-    //eventHandler.attach(nsp, client);
-    nsp.emit('welcome', {games: ['room1', 'room2']})
+    eventHandler.attach(nsp, client);
+    //nsp.emit('welcome', {games: ['room1', 'room2']})
 };
 
 var nsp = io
