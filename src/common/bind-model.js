@@ -1,7 +1,7 @@
 /**
  * Created by sakariruoho on 7/13/15.
  */
-define(function() {
+define(['observe'], function() {
 
     function BindModel(model, el) {
         this.model = model || {};
@@ -24,6 +24,11 @@ define(function() {
             events.forEach(function(event) {
                 addListener(this.el, event, func)
             })
+        },
+        bindAll: function(scope) {
+            (scope || document).querySelectorAll('input[data-bind]').forEach(function(el) {
+                this.bindEvents('change', el);
+            });
         }
 
     };
@@ -38,7 +43,5 @@ define(function() {
     };
 
     return BindModel;
-
-
 
 });
