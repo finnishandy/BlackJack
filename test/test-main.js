@@ -10,12 +10,12 @@ requirejs.config({
     baseUrl: '/base/src',
 
     paths: {
-        'jquery': '../lib/jquery-2.1.3',
-        'underscore': '../lib/underscore',
-        'pubsub': '../lib/pubsub',
-        'jasmine-jquery': '../lib/jasmine-jquery',
-        'promise': '../lib/Promise',
-        'handlebars': '../lib/handlebars-v3.0.3',
+        'jquery': 'lib/jquery-2.1.3',
+        'underscore': 'lib/underscore',
+        'pubsub': 'lib/pubsub',
+        'jasmine-jquery': 'lib/jasmine-jquery',
+        'promise': 'lib/Promise',
+        'handlebars': 'lib/handlebars-v3.0.3',
         'deal' : 'app/deal',
         'dealer': 'app/dealer',
         'player': 'app/player',
@@ -23,7 +23,8 @@ requirejs.config({
         'deck': 'app/deck',
         'card': 'app/card',
         'host': 'app/host',
-        'blackjack' : 'app/blackjack'
+        'blackjack' : 'app/blackjack',
+        'bind-model': 'common/bind-model'
     },
 
     shim: {

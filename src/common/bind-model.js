@@ -1,7 +1,7 @@
 /**
  * Created by sakariruoho on 7/13/15.
  */
-define(['observe'], function() {
+define(function() {
 
     function BindModel(model, el) {
         this.model = model || {};
@@ -21,8 +21,9 @@ define(['observe'], function() {
         },
 
         bindEvents: function(events, func) {
+            var _el = this.el;
             events.forEach(function(event) {
-                addListener(this.el, event, func)
+                addListener(_el, event, func)
             })
         },
         bindAll: function(scope) {
